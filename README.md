@@ -1,4 +1,4 @@
-# WeatherApp -NodeJS
+# WeatherApp - NodeJS
 
 A simple weather app that uses the openweathermap.org API 
 Returns the current weather temperature, written with Node.JS
@@ -11,7 +11,7 @@ https://home.openweathermap.org
 All you need is to register, when you're logged in look for the 'API Keys'
 menu, and you can generate as many as you need.
 
-###Running the server
+### Running the server
 
 Before you can get anything running you'll need to make sure you run:
 ```
