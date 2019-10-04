@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const apiKey = 'INSERT YOUR API KEY HERE';
+const apiKey = 'INSERT YOUR API KEY';
 const weather = {
     weather: null,
     error: null
@@ -33,7 +33,10 @@ const requestWeather = (city) => {
                 //weather.weather is directly used by Index.ejs. What you see below is by default in
                 //celcius, so the formula there is to convert it to F. You'll need to edit this in order
                 //to change what is shown in the Index.ejs file
-                weather.weather = `Its ${(weatherResponse.main.temp) * 1.8 + 32} °F in ${city}.`;
+                var tempObj = (weatherResponse.main.temp * 1.8 + 32);
+                var myJSON = JSON.stringify(tempObj);
+                var temp = myJSON.slice(0,2);
+                weather.weather = `Its ${(temp)}Â°F in ${city}.`;
                 weather.error = null;
                 console.log(`${timestamp} - ${city} - ${body}`);
                 resolve();
