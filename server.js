@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const apiKey = 'INPUT YOUR API KEY HERE';
+const apiKey = 'INSERT YOUR API KEY HERE';
 const weather = {
     weather: null,
     error: null
@@ -19,16 +19,21 @@ const requestWeather = (city) => {
             const weatherResponse = JSON.parse(body);
 
             if (err) {
+                //Error message in the case of an issue with the entered string
                 let errMsg = JSON.stringify(err);
                 weather.error = 'Error, please try again.';
                 console.log(`${timestamp} - ${city} - error: ${errMsg}`);
                 resolve();
             } else if (!weatherResponse.name || !weatherResponse.main.temp) {
+                //Error covering an issue exerienced through the API
                 weather.error = 'Error, please try again.';
                 console.log(`${timestamp} - ${city} - unexpected api output: ${body}`);
                 resolve();
             } else {
-                weather.weather = `Its ${(weatherResponse.main.temp) * 1.8 + 32} degrees in ${city}.`;
+                //weather.weather is directly used by Index.ejs. What you see below is by default in
+                //celcius, so the formula there is to convert it to F. You'll need to edit this in order
+                //to change what is shown in the Index.ejs file
+                weather.weather = `Its ${(weatherResponse.main.temp) * 1.8 + 32} °F in ${city}.`;
                 weather.error = null;
                 console.log(`${timestamp} - ${city} - ${body}`);
                 resolve();
