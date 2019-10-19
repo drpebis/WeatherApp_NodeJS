@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const apiKey = 'INSERT YOUR API KEY';
+const apiKey = '4c28dbc85b488e3afce207bef5fc2ac3';
 const weather = {
     weather: null,
     error: null
@@ -57,6 +57,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index', weather);
+    res.render("images\photo-1455459182396-ae46100617cb.jpg", {images: image})
 });
 
 app.post('/', (req, res) => {
